@@ -1,0 +1,30 @@
+from google.colab import drive
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+ 
+# Mounting the Google Drive
+drive.mount('/content/drive')
+ 
+# Loading the dataset from the drive
+df=pd.read_csv('/content/drive/MyDrive/AITT LAB/students.csv')
+print("Original Data Set : ")
+print(df)
+ 
+# Exploring the data set
+print("Data Set Information : ")
+print(df.info())
+print("Data Set Description : ")
+print(df.describe())
+ 
+# Removing the missing values from the data set
+print(df.dropna())
+ 
+# Removing the duplicate rows from the data set
+df.drop_duplicates(inplace=True)
+print("Data Set After Removing Duplicates : ")
+print(df)
+# Fill missing values with the mean (for numerical columns)
+df['Age'].fillna(df['Age'].mean(), inplace=True)
+df['Marks'].fillna(df['Marks'].mean(), inplace=True)
+print(df)
+
